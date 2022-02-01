@@ -1,0 +1,29 @@
+PODS:
+  - DLDB (0.9.7)
+  - Flutter (1.0.0)
+  - io_dldb_sdk (0.9.7):
+    - DLDB (= 0.9.7)
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - io_dldb_sdk (from `.symlinks/plugins/io_dldb_sdk/ios`)
+
+SPEC REPOS:
+  trunk:
+    - DLDB
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  io_dldb_sdk:
+    :path: ".symlinks/plugins/io_dldb_sdk/ios"
+
+SPEC CHECKSUMS:
+  DLDB: 27d38b49e0b884dbfed1c8499fbc0d32a7035f4c
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  io_dldb_sdk: cab76b38c5f2695d1cc204d829e479d462068020
+
+PODFILE CHECKSUM: 8e679eca47255a8ca8067c4c67aab20e64cb974d
+
+COCOAPODS: 1.11.2
