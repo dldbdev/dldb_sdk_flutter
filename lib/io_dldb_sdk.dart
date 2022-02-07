@@ -1,4 +1,3 @@
-
 import 'dart:async';
 
 import 'package:flutter/services.dart';
@@ -11,10 +10,12 @@ class IoDldbSdk {
     return version;
   }
 
-  static Future<void> init(String dldbApiKey, String eventsDictionaryAsJson) async {
-    await _channel.invokeMethod(
-        'init',
-        {'dldbApiKey': dldbApiKey, 'eventsDictionaryAsJson': eventsDictionaryAsJson});
+  static Future<void> init(
+      String dldbApiKey, String eventsDictionaryAsJson) async {
+    await _channel.invokeMethod('init', {
+      'dldbApiKey': dldbApiKey,
+      'eventsDictionaryAsJson': eventsDictionaryAsJson
+    });
   }
 
   static Future<void> heartbeat() async {
@@ -30,35 +31,44 @@ class IoDldbSdk {
   }
 
   static Future<void> addEvents(String eventsAsJson) async {
-    await _channel.invokeMethod(
-        'addEvents',
-        {'eventsAsJson': eventsAsJson});
+    await _channel.invokeMethod('addEvents', {'eventsAsJson': eventsAsJson});
   }
 
-  static Future<void> addEventsWithLocation(String eventsAsJson, double longitudeInDegrees, double latitudeInDegrees, double horizontalAccuracy) async {
-    await _channel.invokeMethod(
-        'addEventsWithLocation',
-        {'eventsAsJson': eventsAsJson, 'longitudeInDegrees' : longitudeInDegrees, 'latitudeInDegrees' : latitudeInDegrees, 'horizontalAccuracy' : horizontalAccuracy});
+  static Future<void> addEventsWithLocation(
+      String eventsAsJson,
+      double longitudeInDegrees,
+      double latitudeInDegrees,
+      double horizontalAccuracy) async {
+    await _channel.invokeMethod('addEventsWithLocation', {
+      'eventsAsJson': eventsAsJson,
+      'longitudeInDegrees': longitudeInDegrees,
+      'latitudeInDegrees': latitudeInDegrees,
+      'horizontalAccuracy': horizontalAccuracy
+    });
   }
 
-  static Future<void> addLocation(double longitudeInDegrees, double latitudeInDegrees, double horizontalAccuracy) async {
-    await _channel.invokeMethod(
-        'addLocation',
-        {'longitudeInDegrees' : longitudeInDegrees, 'latitudeInDegrees' : latitudeInDegrees, 'horizontalAccuracy' : horizontalAccuracy});
+  static Future<void> addLocation(double longitudeInDegrees,
+      double latitudeInDegrees, double horizontalAccuracy) async {
+    await _channel.invokeMethod('addLocation', {
+      'longitudeInDegrees': longitudeInDegrees,
+      'latitudeInDegrees': latitudeInDegrees,
+      'horizontalAccuracy': horizontalAccuracy
+    });
   }
 
   static Future<String?> queriesLog(int maxEntries) async {
-    final String? log = await _channel.invokeMethod(
-        'queriesLog',
-        {'maxEntries' : maxEntries});
+    final String? log =
+        await _channel.invokeMethod('queriesLog', {'maxEntries': maxEntries});
     return log;
   }
 
-  static Future<String?> locationsLog(int durationInSeconds, int maxEntries, int resolution) async {
-    final String? log = await _channel.invokeMethod(
-        'locationsLog',
-        {'durationInSeconds' : durationInSeconds, 'maxEntries' : maxEntries, 'resolution' : resolution});
+  static Future<String?> locationsLog(
+      int durationInSeconds, int maxEntries, int resolution) async {
+    final String? log = await _channel.invokeMethod('locationsLog', {
+      'durationInSeconds': durationInSeconds,
+      'maxEntries': maxEntries,
+      'resolution': resolution
+    });
     return log;
   }
-
 }

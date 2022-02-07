@@ -39,7 +39,8 @@ class _MyAppState extends State<MyApp> {
     }
 
     try {
-      await IoDldbSdk.init('1688e135-f5b1-4659-b84a-96ff15c07f57', '{"button" : "t"}');
+      await IoDldbSdk.init(
+          '1688e135-f5b1-4659-b84a-96ff15c07f57', '{"button" : "t"}');
     } on PlatformException {
       platformVersion = 'Failed to init dldb';
     }
@@ -60,8 +61,7 @@ class _MyAppState extends State<MyApp> {
         setState(() {
           _message = 'heartbeat called\n';
         });
-      } on PlatformException {
-      }
+      } on PlatformException {}
     });
     cron.schedule(new Schedule.parse('15-16 * * * *'), () async {
       print('between every 15 and 16 minutes');
@@ -70,8 +70,7 @@ class _MyAppState extends State<MyApp> {
         setState(() {
           _message = 'runQueriesIfAny called\n';
         });
-      } on PlatformException {
-      }
+      } on PlatformException {}
     });
   }
 
@@ -83,64 +82,58 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [ 
-            Text(_message, textAlign: TextAlign.center),
-            ElevatedButton(
-              onPressed: () async { 
-                try {
-                  await IoDldbSdk.addEvents('{"button" : "Click Me"}');
-                } on PlatformException {
-                }
-                setState(() {
-                  _message = 'button Click Me pressed ! => event logged\n';
-                });
-              },
-              child: const Text('Click Me'),
-            ),
-            ElevatedButton(
-              onPressed: () async { 
-                try {
-                  await IoDldbSdk.addEvents('{"button" : "Run queries"}');
-                  await IoDldbSdk.runQueriesIfAny();
-                } on PlatformException {
-                }
-                setState(() {
-                  _message = 'button Run queries pressed ! => event logged\n';
-                });
-              },
-              child: const Text('Run queries'),
-            ),
-            ElevatedButton(
-              onPressed: () async { 
-                String? queriesLog;
-                try {
-                  queriesLog = await IoDldbSdk.queriesLog(10);
-                } on PlatformException {
-                }
-                setState(() {
-                  _message = 'Queries Log ! => $queriesLog\n';
-                });
-              },
-              child: const Text('Queries Log'),
-            ),
-            ElevatedButton(
-              onPressed: () async { 
-                String? locationsLog;
-                try {
-                  locationsLog = await IoDldbSdk.locationsLog(3600,10,7);
-                } on PlatformException {
-                }
-                setState(() {
-                  _message = 'Locations Log ! => $locationsLog\n';
-                });
-              },
-              child: const Text('Locations Log'),
-            )
-
-          ]
-        ),
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(_message, textAlign: TextAlign.center),
+              ElevatedButton(
+                onPressed: () async {
+                  try {
+                    await IoDldbSdk.addEvents('{"button" : "Click Me"}');
+                  } on PlatformException {}
+                  setState(() {
+                    _message = 'button Click Me pressed ! => event logged\n';
+                  });
+                },
+                child: const Text('Click Me'),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  try {
+                    await IoDldbSdk.addEvents('{"button" : "Run queries"}');
+                    await IoDldbSdk.runQueriesIfAny();
+                  } on PlatformException {}
+                  setState(() {
+                    _message = 'button Run queries pressed ! => event logged\n';
+                  });
+                },
+                child: const Text('Run queries'),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  String? queriesLog;
+                  try {
+                    queriesLog = await IoDldbSdk.queriesLog(10);
+                  } on PlatformException {}
+                  setState(() {
+                    _message = 'Queries Log ! => $queriesLog\n';
+                  });
+                },
+                child: const Text('Queries Log'),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  String? locationsLog;
+                  try {
+                    locationsLog = await IoDldbSdk.locationsLog(3600, 10, 7);
+                  } on PlatformException {}
+                  setState(() {
+                    _message = 'Locations Log ! => $locationsLog\n';
+                  });
+                },
+                child: const Text('Locations Log'),
+              )
+            ]),
       ),
     );
   }
